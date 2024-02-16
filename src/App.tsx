@@ -1,5 +1,7 @@
 import { useState } from "react";
 import "./App.css";
+import yesSound from './assets/yesSound.mp3';
+
 
 function App() {
   const [noCount, setNoCount] = useState(0);
@@ -9,6 +11,13 @@ function App() {
   const handleNoClick = () => {
     setNoCount(noCount + 1);
   };
+
+  const handleYesClick = () => {
+    const audio = new Audio(yesSound);
+    audio.play();
+    setYesPressed(true);
+  };
+  
 
   const getNoButtonText = () => {
     const phrases = [
@@ -53,7 +62,10 @@ function App() {
             <button
               className={`bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mr-4`}
               style={{ fontSize: yesButtonSize }}
-              onClick={() => setYesPressed(true)}
+              onClick={() => {
+                handleYesClick();
+                setYesPressed(true);
+              }}
             >
               Yes
             </button>
